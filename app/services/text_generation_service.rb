@@ -22,7 +22,6 @@ class TextGenerationService
     }
     response = HTTParty.post(api_url, headers: headers, body: data.to_json)
     response_body = JSON.parse(response.body)
-    response_body['choices'][0]['text']
 
     # Check if the response has any content for the bot's reply
     if response_body['choices'].empty?
@@ -32,7 +31,8 @@ class TextGenerationService
       # Extract the bot's reply from the response
       bot_reply = response_body['choices'][0]['text']
       # Remove any text before the bot's response (i.e., "You:")
-      bot_reply.sub!('You:', '')&.strip
+      bot_reply = bot_reply.split("Bot: ")&.last&.strip
+
       return bot_reply
     end
   end
