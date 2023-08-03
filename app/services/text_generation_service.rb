@@ -10,9 +10,10 @@ class TextGenerationService
         'Content-Type' => 'application/json',
         'Authorization' => "Bearer #{api_key}"
     }
+    text = "You are a helpful and informative bot.\nYou: #{prompt}\nBot:"
 
     data = {
-        prompt: prompt,
+        prompt: text,
         max_tokens: 50,
         temperature: 0.5
     }
