@@ -10,12 +10,12 @@ class TextGenerationService
         'Content-Type' => 'application/json',
         'Authorization' => "Bearer #{api_key}"
     }
-    text = "You are a helpful and informative bot.\nYou: #{prompt}\nBot:"
+    text = "You: #{prompt}\nBot:"
 
     data = {
         prompt: text,
-        max_tokens: 50,
-        temperature: 0.5
+        max_tokens: 150, # Increase the max_tokens to get more comprehensive answers
+        temperature: 0.5 # Adjust the temperature as needed
     }
     response = HTTParty.post(api_url, headers: headers, body: data.to_json)
     response_body = JSON.parse(response.body)
