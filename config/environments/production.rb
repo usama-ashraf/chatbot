@@ -36,7 +36,10 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for Apache
   # config.action_dispatch.x_sendfile_header = "X-Accel-Redirect" # for NGINX
-
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.action_cable.url = "wss://test-app-ror-4f89c71711f1.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = [/https:\/\/test-app-ror-4f89c71711f1\.herokuapp\.com/]
+  config.web_socket_server_url = "wss://test-app-ror-4f89c71711f1.herokuapp.com/cable"
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
@@ -51,6 +54,7 @@ Rails.application.configure do
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
+  config.action_cable.redis = { url: ENV['REDIS_URL'] }
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]

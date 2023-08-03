@@ -4,7 +4,7 @@ require 'httparty'
 class TextGenerationService
   def self.generate_text(prompt)
     api_url = 'https://api.openai.com/v1/engines/davinci/completions'
-    api_key = "YOUR_API_KEY"
+    api_key = ENV["OPENAI_API_KEY"]
 
     headers = {
         'Content-Type' => 'application/json',
