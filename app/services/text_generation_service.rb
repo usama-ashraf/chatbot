@@ -37,7 +37,7 @@ class TextGenerationService
     end
   end
 
-  def text_prompt(user_message)
+  def self.text_prompt(user_message) # Make text_prompt a class method
     <<~PROMPT
     You: #{user_message}
     Bot: Sure! I'm here to help. How can I assist you today?
