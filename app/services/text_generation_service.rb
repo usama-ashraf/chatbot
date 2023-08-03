@@ -32,7 +32,7 @@ class TextGenerationService
       # Extract the bot's reply from the response
       bot_reply = response_body['choices'][0]['text']
       # Remove any text before the bot's response (i.e., "You:")
-      bot_reply.sub!('You:', '').strip
+      bot_reply.sub!('You:', '')&.strip
       return bot_reply
     end
   end
