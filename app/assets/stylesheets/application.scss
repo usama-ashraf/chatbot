@@ -1,0 +1,66 @@
+@import "bootstrap";
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+  flex: 0 0 250px;
+  background-color: #322e2e;
+  padding: 20px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}
+
+#chat {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+#message_input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.logout-custom-btn{
+  width: 215px;
+  margin-top: 100px;
+}
+.custom-btn{
+  width: 215px;
+}
+
+/* Style for user messages */
+li.user-message {
+  list-style: none;
+  //background-color: #f0f0f0;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+
+/* Style for bot messages */
+li.bot-message {
+  list-style: none;
+  //background-color: #dff0d8;
+  padding: 5px;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.chat-name:hover{
+  color: #1591ee !important;
+}

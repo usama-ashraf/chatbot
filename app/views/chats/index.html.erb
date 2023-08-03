@@ -1,0 +1,45 @@
+<div class="d-flex" style="height: 100vh">
+    <div class="sidebar" style="height: 100vh; display: flex; align-items: center; justify-content: space-between; flex-direction: column">
+      <div>
+      <%= form_tag "/chats", method: :post, id: "chat_form" do %>
+        <%= text_field_tag "chat[name]", nil, placeholder: "New chat", style: "text-align: center;" %>
+      <% end %>
+      <ul>
+        <% @chats.each do |chat| %>
+          <li class="text-white chat-name mt-2" style="cursor: pointer" data-chat-id="<%= chat.id %>"><%= chat.name %></li>
+        <% end  %>
+      </ul>
+      </div>
+      <%= button_to "logout", destroy_user_session_path, method: :delete, class: "btn btn-secondary mt-2 custom-btn" %>
+    </div>
+  <div class="content d-flex align-items-center flex-column overflow-scroll" style="padding: 2rem 20rem; height: 100vh">
+    <% @chats.each do |chat| %>
+      <div id="chat_<%= chat.id %>">
+        <ul id="messages">
+          <% chat.messages.each do |message| %>
+            <% if message.user_type == "User" %>
+              <li class="user-message d-flex align-items-center justify-content-end text-primary"  data-chat-id="<%= chat.id %>"><%= message.content %></li>
+            <% elsif message.user_type == "Bot" %>
+              <li class="bot-message" data-chat-id="<%= chat.id %>"><%= message.content %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <input type="text" class="position-absolute w-50" id="message_input" style="border-radius: 30px ; bottom: 40px"  placeholder="Type your message here..." />
+  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.getElementById("chat_form");
+        var textField = form.querySelector('input[type="text"]');
+
+        textField.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                form.submit();
+            }
+        });
+    });
+</script>
